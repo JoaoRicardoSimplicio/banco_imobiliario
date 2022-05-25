@@ -21,25 +21,13 @@ def _obtem_comportamento_mais_vitorias(jogos: list) -> str:
 
 
 def _obtem_percentual_vitoria_comportamentos(jogos: list) -> dict:
-    jogadores_impulsivos = 0
-    jogadores_exigentes = 0
-    jogadores_cautelosos = 0
-    jogadores_aleatorios = 0
-    for jogo in jogos:
-        if jogo.vencedor.tipo == 'impulsivo':
-            jogadores_impulsivos += 1
-        elif jogo.vencedor.tipo == 'exigente':
-            jogadores_exigentes += 1
-        elif jogo.vencedor.tipo == 'cauteloso':
-            jogadores_cautelosos += 1
-        elif jogo.vencedor.tipo == 'aleatorio':
-            jogadores_aleatorios += 1
     quantidade_jogos = len(jogos)
+    tipos_jogadores_qtd = Counter([jogo.vencedor.tipo for jogo in jogos])
     return {
-        'impulsivo': round((jogadores_impulsivos / quantidade_jogos) * 100, 2),
-        'exigente': round((jogadores_exigentes / quantidade_jogos) * 100, 2),
-        'cauteloso': round((jogadores_cautelosos / quantidade_jogos) * 100, 2),
-        'aleatorio': round((jogadores_aleatorios / quantidade_jogos) * 100, 2)
+        'impulsivo': round((tipos_jogadores_qtd['impulsivo'] / quantidade_jogos) * 100, 2),
+        'exigente': round((tipos_jogadores_qtd['exigente'] / quantidade_jogos) * 100, 2),
+        'cauteloso': round((tipos_jogadores_qtd['cauteloso'] / quantidade_jogos) * 100, 2),
+        'aleatorio': round((tipos_jogadores_qtd['aleatorio'] / quantidade_jogos) * 100, 2)
     }
 
 
