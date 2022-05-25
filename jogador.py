@@ -7,7 +7,7 @@ from propriedade import Propriedade
 @dataclass
 class Jogador:
 
-    identificador: int
+    identificador: str
     tipo: str
     saldo: int = 300
 
@@ -19,18 +19,31 @@ class Jogador:
             if propriedade.aluguel <= 50:
                 return False
         elif self.tipo == "cauteloso":
-            if propriedade.valor - self.saldo < 80:
+            if (self.saldo - propriedade.valor) < 80:
                 return False
         elif self.tipo == "aleatorio":
             if randint(1, 2) % 2 == 0:
                 return False
         return True
 
+    def comprar(self, propriedade: Propriedade) -> None:
+        if self._pode_comprar(propriedade):
+            self.saldo = self.saldo - propriedade.valor
+            propriedade.proprietario = self.identificador
+
+    def receber_alguel(self, propriedade: Propriedade) -> None:
+        self.saldo += propriedade.aluguel
+
+    def _pode_comprar(self, propriedade: Propriedade) -> bool:
+        if (self.saldo - propriedade.valor) < 0:
+            return False
+        return True
+
 
 def cria_jogadores() -> list:
     tipos = ['impulsivo', 'exigente', 'cauteloso', 'aleatorio']
-    shuffle(tipos)
-    return [
-        Jogador(identificador=index, tipo=tipo)
+    jogadores = [
+        Jogador(identificador=f'{index}', tipo=tipo)
         for index, tipo in enumerate(tipos)
     ]
+    return shuffle(jogadores)
