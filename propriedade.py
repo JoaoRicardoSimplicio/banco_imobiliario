@@ -1,4 +1,5 @@
 from dataclasses import dataclass
+from typing import Any
 from random import randint
 
 
@@ -8,7 +9,10 @@ class Propriedade:
     identificador: int
     aluguel: int
     valor: int
-    proprietario: str = ''
+    proprietario: Any = None
+
+    def disponivel_para_venda(self) -> bool:
+        return self.proprietario == None
 
 
 def cria_propriedades(quantidade: int = 20) -> list:
