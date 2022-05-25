@@ -49,9 +49,9 @@ def executar_jogos() -> dict:
 if __name__ == '__main__':
     estatisticas = executar_jogos()
     print(
-        'Quantidade jogos Timeout: {quantidade_jogos_timeout}\n'
-        'Média de rodadas por Jogo: {media_rodada_por_jogos}\n'
-        'Percentual de vitórias por tipo de Jogador: {percentual_vitorias_por_tipo_jogador}\n'
-        'Tipo de Jogador mais vitorioso: {tipo_jogador_mais_vitorioso}'
+        'Quantidade jogos com 1000 rodadas (Timeout): {quantidade_jogos_timeout}\n'
+        'Média de rodadas por jogo: {media_rodada_por_jogos}\n'
+        'Percentual de vitórias por tipo de jogador: {percentual_vitorias_por_tipo_jogador}\n'
+        'Tipo de jogador mais vitorioso: {tipo_jogador_mais_vitorioso}'
         .format(**estatisticas)
     )
