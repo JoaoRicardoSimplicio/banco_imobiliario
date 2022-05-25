@@ -11,6 +11,14 @@ class Jogador:
     tipo: str
     saldo: int = 300
 
+    def comprar(self, propriedade: Propriedade) -> None:
+        if self._pode_comprar(propriedade):
+            self.saldo = self.saldo - propriedade.valor
+            propriedade.proprietario = self.identificador
+
+    def receber_alguel(self, propriedade: Propriedade) -> None:
+        self.saldo += propriedade.aluguel
+
     def eh_valido(self) -> bool:
         return self.saldo >= 0
 
@@ -26,14 +34,6 @@ class Jogador:
                 return False
         return True
 
-    def comprar(self, propriedade: Propriedade) -> None:
-        if self._pode_comprar(propriedade):
-            self.saldo = self.saldo - propriedade.valor
-            propriedade.proprietario = self.identificador
-
-    def receber_alguel(self, propriedade: Propriedade) -> None:
-        self.saldo += propriedade.aluguel
-
     def _pode_comprar(self, propriedade: Propriedade) -> bool:
         if (self.saldo - propriedade.valor) < 0:
             return False
@@ -46,4 +46,5 @@ def cria_jogadores() -> list:
         Jogador(identificador=f'{index}', tipo=tipo)
         for index, tipo in enumerate(tipos)
     ]
-    return shuffle(jogadores)
+    shuffle(jogadores)
+    return jogadores
