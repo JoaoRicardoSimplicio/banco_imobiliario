@@ -1,10 +1,11 @@
 from random import randint
 
 from jogador import Jogador, cria_jogadores
-from jogo import Jogo
+from jogo import Jogo, obtem_estatisticas_jogos
 from propriedade import cria_propriedades
 
 
+QUANTIDADE_JOGOS = 300
 MAX_RODADAS = 1000
 
 
@@ -19,7 +20,6 @@ def jogar() -> Jogo:
         rodadas=0
     )
     while jogo.rodadas < MAX_RODADAS and len(jogo.jogadores) > 1:
-        print("Rodada Atual ", jogo.rodadas)
         qtd_jogadores = len(jogo.jogadores)
         index_jogador = 0
         while index_jogador < qtd_jogadores:
@@ -38,5 +38,20 @@ def jogar() -> Jogo:
     return jogo
 
 
+def executar_jogos() -> dict:
+    jogos = []
+    for i in range(QUANTIDADE_JOGOS):
+        novo_jogo = jogar()
+        jogos.append(novo_jogo)
+    return obtem_estatisticas_jogos(jogos)
+
+
 if __name__ == '__main__':
-    jogar()
+    estatisticas = executar_jogos()
+    print(
+        'Quantidade jogos Timeout: {quantidade_jogos_timeout}\n'
+        'Média de rodadas por Jogo: {media_rodada_por_jogos}\n'
+        'Percentual de vitórias por tipo de Jogador: {percentual_vitorias_por_tipo_jogador}\n'
+        'Tipo de Jogador mais vitorioso: {tipo_jogador_mais_vitorioso}'
+        .format(**estatisticas)
+    )
