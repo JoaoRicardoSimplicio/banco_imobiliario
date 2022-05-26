@@ -77,3 +77,8 @@ Rode os testes:
 ```bash
 $ pytest
 ```
+
+
+### Licença
+
+MIT: [license](./LICENSE)
