@@ -118,11 +118,7 @@ class TestJogo(TestCase):
             Propriedade(identificador='4', aluguel=50, valor=250, proprietario=jogador3),
         ]
         self.jogo.remove_jogador(jogador1, posicao=0)
-        proprietarios = [
-            propriedade.proprietario
-            for propriedade in self.jogo.tabuleiro
-            if propriedade is None
-        ]
+        proprietarios = [propriedade.proprietario for propriedade in self.jogo.tabuleiro]
         self.assertNotIn(jogador1, proprietarios)
 
 
