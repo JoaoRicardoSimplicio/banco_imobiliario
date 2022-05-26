@@ -70,12 +70,12 @@ $ source env/bin/activate
 
 Instale as dependências:
 ```bash
-$ pip install -r core/requirements/base.txt
+$(env) pip install -r requirements.txt
 ```
 
 Rode os testes:
 ```bash
-$ pytest
+$(env) pytest
 ```
 
 
