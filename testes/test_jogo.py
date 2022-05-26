@@ -18,12 +18,12 @@ class TestJogo(TestCase):
 
     def test_define_vencedor_jogo(self):
         self.jogo.jogadores = [
-            Jogador(identificador='1', tipo='', saldo=50),
+            Jogador(identificador='1', tipo='', saldo=170),
             Jogador(identificador='2', tipo='', saldo=170),
             Jogador(identificador='3', tipo='', saldo=150),
         ]
         self.jogo.define_vencedor()
-        self.assertEqual(self.jogo.vencedor, Jogador(identificador='2', tipo='', saldo=170))
+        self.assertEqual(self.jogo.vencedor, Jogador(identificador='1', tipo='', saldo=170))
 
     def test_atualiza_posicao_jogador_sem_finalizar_tabuleiro(self):
         jogador = Jogador(identificador='1', tipo='', saldo=50, posicao_atual=5)
