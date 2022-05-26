@@ -12,7 +12,7 @@ class Propriedade:
     proprietario: Any = None
 
     def disponivel_para_venda(self) -> bool:
-        return self.proprietario == None
+        return self.proprietario is None
 
 
 def cria_propriedades(quantidade: int = 20) -> list:

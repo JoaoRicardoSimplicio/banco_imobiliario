@@ -22,12 +22,12 @@ def _obtem_comportamento_mais_vitorias(jogos: list) -> str:
 
 def _obtem_percentual_vitoria_comportamentos(jogos: list) -> dict:
     quantidade_jogos = len(jogos)
-    tipos_jogadores_qtd = Counter([jogo.vencedor.tipo for jogo in jogos])
+    vitorias_por_tipo = Counter([jogo.vencedor.tipo for jogo in jogos])
     return {
-        'impulsivo': round((tipos_jogadores_qtd['impulsivo'] / quantidade_jogos) * 100, 2),
-        'exigente': round((tipos_jogadores_qtd['exigente'] / quantidade_jogos) * 100, 2),
-        'cauteloso': round((tipos_jogadores_qtd['cauteloso'] / quantidade_jogos) * 100, 2),
-        'aleatorio': round((tipos_jogadores_qtd['aleatorio'] / quantidade_jogos) * 100, 2)
+        'impulsivo': round((vitorias_por_tipo['impulsivo'] / quantidade_jogos) * 100, 2),
+        'exigente': round((vitorias_por_tipo['exigente'] / quantidade_jogos) * 100, 2),
+        'cauteloso': round((vitorias_por_tipo['cauteloso'] / quantidade_jogos) * 100, 2),
+        'aleatorio': round((vitorias_por_tipo['aleatorio'] / quantidade_jogos) * 100, 2)
     }
 
 
@@ -87,7 +87,7 @@ class Jogo:
         jogador.saldo -= propriedade.valor
 
     def _pagar_aluguel(self, propriedade: Propriedade, jogador: Jogador) -> None:
-        if not propriedade.proprietario is jogador:
+        if propriedade.proprietario is not jogador:
             propriedade.proprietario.saldo += propriedade.aluguel
             jogador.saldo -= propriedade.aluguel
 

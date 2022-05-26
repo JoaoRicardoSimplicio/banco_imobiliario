@@ -44,7 +44,7 @@ class TestJogo(TestCase):
         self.jogo.acao(propriedade, jogador)
         self.assertEqual(propriedade.proprietario, None)
         self.assertEqual(jogador.saldo, 15)
-        
+
     def test_jogo_comprar_propriedade_jogador_exigente(self):
         jogador = Jogador(identificador='1', tipo='exigente', saldo=150, posicao_atual=5)
         propriedade = Propriedade(identificador='1', aluguel=60, valor=100)
@@ -118,7 +118,11 @@ class TestJogo(TestCase):
             Propriedade(identificador='4', aluguel=50, valor=250, proprietario=jogador3),
         ]
         self.jogo.remove_jogador(jogador1, posicao=0)
-        proprietarios = [propriedade.proprietario for propriedade in self.jogo.tabuleiro if propriedade != None]
+        proprietarios = [
+            propriedade.proprietario
+            for propriedade in self.jogo.tabuleiro
+            if propriedade is None
+        ]
         self.assertNotIn(jogador1, proprietarios)
 
 

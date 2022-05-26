@@ -12,7 +12,7 @@ class TestJogador(TestCase):
 
     def test_jogador_eh_valido_com_saldo_positivo(self):
         self.assertTrue(self.jogador.eh_valido())
-        
+
     def test_jogador_eh_valido_com_saldo_negativo(self):
         self.jogador.saldo = -100
         self.assertFalse(self.jogador.eh_valido())

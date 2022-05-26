@@ -1,6 +1,6 @@
 from random import randint
 
-from jogador import Jogador, cria_jogadores
+from jogador import cria_jogadores
 from jogo import Jogo, obtem_estatisticas_jogos
 from propriedade import cria_propriedades
 
