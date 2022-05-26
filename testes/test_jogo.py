@@ -3,10 +3,10 @@ from unittest import TestCase, mock
 from jogador import Jogador
 from jogo import (
     Jogo,
-    _obtem_comportamento_mais_vitorias,
-    _obtem_media_rodadas,
-    _obtem_percentual_vitoria_comportamentos,
-    _obtem_quantidade_jogos_timeout
+    obtem_comportamento_mais_vitorias,
+    obtem_media_rodadas,
+    obtem_percentual_vitoria_comportamentos,
+    obtem_quantidade_jogos_timeout
 )
 from propriedade import Propriedade
 
@@ -152,7 +152,7 @@ class TestJogoEstatisticas(TestCase):
                 tabuleiro=[],
             ),
         ]
-        resultado = _obtem_percentual_vitoria_comportamentos(jogos)
+        resultado = obtem_percentual_vitoria_comportamentos(jogos)
         self.assertEqual(resultado['aleatorio'], 33.33)
         self.assertEqual(resultado['exigente'], 33.33)
         self.assertEqual(resultado['cauteloso'], 33.33)
@@ -176,7 +176,7 @@ class TestJogoEstatisticas(TestCase):
                 tabuleiro=[],
             ),
         ]
-        resultado = _obtem_media_rodadas(jogos)
+        resultado = obtem_media_rodadas(jogos)
         self.assertEqual(resultado, 370.67)
 
     def test_obtem_quantidade_jogos_timeout(self):
@@ -207,7 +207,7 @@ class TestJogoEstatisticas(TestCase):
                 tabuleiro=[],
             ),
         ]
-        resultado = _obtem_quantidade_jogos_timeout(jogos)
+        resultado = obtem_quantidade_jogos_timeout(jogos)
         self.assertEqual(resultado, 2)
 
     def test_obtem_comportamento_mais_vencedor(self):
@@ -237,5 +237,5 @@ class TestJogoEstatisticas(TestCase):
                 tabuleiro=[],
             ),
         ]
-        resultado = _obtem_comportamento_mais_vitorias(jogos)
+        resultado = obtem_comportamento_mais_vitorias(jogos)
         self.assertEqual(resultado, 'aleatorio')

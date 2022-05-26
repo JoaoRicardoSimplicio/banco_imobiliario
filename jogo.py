@@ -9,7 +9,7 @@ from propriedade import Propriedade
 MAIOR_POSICAO = 19
 
 
-def _obtem_comportamento_mais_vitorias(jogos: list) -> str:
+def obtem_comportamento_mais_vitorias(jogos: list) -> str:
     tipo_vencedor = ''
     quantidade_vitorias_tipo = 0
     vitorias_por_tipo = Counter([jogo.vencedor.tipo for jogo in jogos])
@@ -20,7 +20,7 @@ def _obtem_comportamento_mais_vitorias(jogos: list) -> str:
     return tipo_vencedor
 
 
-def _obtem_percentual_vitoria_comportamentos(jogos: list) -> dict:
+def obtem_percentual_vitoria_comportamentos(jogos: list) -> dict:
     quantidade_jogos = len(jogos)
     vitorias_por_tipo = Counter([jogo.vencedor.tipo for jogo in jogos])
     return {
@@ -31,22 +31,22 @@ def _obtem_percentual_vitoria_comportamentos(jogos: list) -> dict:
     }
 
 
-def _obtem_media_rodadas(jogos: list) -> float:
+def obtem_media_rodadas(jogos: list) -> float:
     total_rodadas = sum([jogo.rodadas for jogo in jogos])
     return round((total_rodadas / len(jogos)), 2)
 
 
-def _obtem_quantidade_jogos_timeout(jogos: list) -> int:
+def obtem_quantidade_jogos_timeout(jogos: list) -> int:
     jogos_timeout = [jogo for jogo in jogos if jogo.rodadas == 1000]
     return len(jogos_timeout)
 
 
 def obtem_estatisticas_jogos(jogos: list) -> dict:
     return {
-        'quantidade_jogos_timeout': _obtem_quantidade_jogos_timeout(jogos),
-        'media_rodada_por_jogos': _obtem_media_rodadas(jogos),
-        'percentual_vitorias_por_tipo_jogador': _obtem_percentual_vitoria_comportamentos(jogos),
-        'tipo_jogador_mais_vitorioso': _obtem_comportamento_mais_vitorias(jogos)
+        'quantidade_jogos_timeout': obtem_quantidade_jogos_timeout(jogos),
+        'media_rodada_por_jogos': obtem_media_rodadas(jogos),
+        'percentual_vitorias_por_tipo_jogador': obtem_percentual_vitoria_comportamentos(jogos),
+        'tipo_jogador_mais_vitorioso': obtem_comportamento_mais_vitorias(jogos)
     }
 
 
